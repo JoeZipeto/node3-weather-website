@@ -45,10 +45,10 @@ app.get('/help', (req, res) => {
 app.get('/weather', (req, res) => {
 
     if (!req.query.address) {
-        return res.send({
-            error: ' You must provide a Address'
+      return  res.send({
+            error: 'You must provide a Address'
         })
-    }
+     }
 
     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
@@ -59,13 +59,13 @@ app.get('/weather', (req, res) => {
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
                 return res.send({
-                     error
+                    error
                 })
             }
             res.send({
-                 location,
+                location,
                 forecastData,
-                 address:req.query.address
+                address: req.query.address
 
             })
         })
